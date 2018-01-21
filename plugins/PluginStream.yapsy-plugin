@@ -1,0 +1,10 @@
+
+[Core]
+Name = stream
+Module = PluginStream
+
+[Documentation]
+Author = Various
+Note = Based on https://github.com/OpenBCI/OpenBCI_Python/blob/master/plugins/streamer_tcp_server.py
+Version = 0.1
+Description = Stream Bitalino samples to a TCP connection

@@ -1,0 +1,7 @@
+-e git+https://github.com/tibonihoo/yapsy.git#egg=yapsy&subdirectory=package
+serial
+bitalino
+PyBluez
+python-xlib
+pyqtgraph
+PyAutoGUI

@@ -1,0 +1,10 @@
+
+[Core]
+Name = print
+Module = PluginPrint
+
+[Documentation]
+Author = Various
+Note = Based on https://github.com/OpenBCI/OpenBCI_Python/blob/master/plugins/print.py
+Version = 0.1
+Description = Print Bitalino samples
