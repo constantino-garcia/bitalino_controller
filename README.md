@@ -2,7 +2,7 @@
 
 A **Python 2.7** library designed to control a [BITalino](http://bitalino.com/en/community/projects) board by means of Plugins (inspired by the [OpenBCI library](https://github.com/OpenBCI/OpenBCI_Python)). This repository is intended to provide
 a "bare-bones" BITalino controller, which should be improved as part of a undergraduate course on biosignals. Therefore, it is unlikely that new features will be added in the future. However, if you are interested in further develop the project, 
-don't hesitate in forking it (see [License](#License)).
+don't hesitate in forking it (see [License](#license)).
 
 ## Installation
 This project is implemented in **Python 2.7** and depends on the packages listed in *requirements.txt*. At the same time, some of these packages have some system-dependencies that should be met before trying to install them.
@@ -53,7 +53,7 @@ Plugins are based on the [Yapsy](http://yapsy.sourceforge.net/) plugin system. T
 python BitalinoController.py -l
 ```
 
-At the moment, only two plugins are available. A print plugin and a TCP-streaming plugin. Please note that, as part of the course, the TCP-streaming plugin is severely limited, and it only streams the last activer channel.
+Art the moment, only two plugins are available. A print plugin and a TCP-streaming plugin. Please note that, as part of the course, the TCP-streaming plugin is severely limited, and it only streams the last active channel.
 
 The Yapsy plugin systems looks for available plugins under the ```plugins``` folder. To use a plugin just use its name after the ```-p``` argument. Additional arguments
 for the plugin should be specified after its name. For example, to print samples and stream the last active channel through TCP to the local 6666 port:
@@ -63,7 +63,7 @@ python BitalinoController.py -p stream 127.0.0.1 6666 -p print
 ```
 
 #### Create new plugins
-To create a new plugin, a new class extending ```IPluginBitalino``` should be created. For a minimal example, see [plugins/PluginPring.py](plugin/PluginPring.py). Finally, describe your plugin with a ```[name-of-class].yapsy-plugin``` (see [plugins/PluginPrint.yapsy-plugin](plugins/PluginPrint.yapsy-plugin)).
+To create a new plugin, a new class extending ```IPluginBitalino``` should be created. For a minimal example, see [plugins/PluginPrint.py](plugin/PluginPrint.py). Finally, describe your plugin with a ```[name-of-class].yapsy-plugin``` (see [plugins/PluginPrint.yapsy-plugin](plugins/PluginPrint.yapsy-plugin)).
 
 ### A basic visualization tool
 When using the ```BitalinoController``` with the default parameters of the ```PluginStream```, a basic signal visualizer can be used. The following command starts a client listening at localhost:6666 which 
