@@ -20,9 +20,9 @@ class BitalinoGUI(QtGui.QMainWindow):
         self.curve = pl.plot(self.channel_data)
 
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print('connecting to {} port {}'.format(*server_address))
+        print('connecting to {} port {} ...'.format(*server_address))
         self.sock.connect(server_address)
-        self.infile = self.sock.makefile()
+        print('connected')
 
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.__update)
@@ -32,14 +32,22 @@ class BitalinoGUI(QtGui.QMainWindow):
         try:
             print('Clossing the connection')
             self.sock.close()
-            self.infile.close()
         except Exception:
-            print "Error while closing the connection"
+            print("Error while closing the connection")
 
-    def __update(self):
+    def __update(self, MAX_BUFFER_SIZE=4096):
         try:
-            data = self.infile.readline()
+            data = self.sock.recv(MAX_BUFFER_SIZE)
+            # MAX_BUFFER_SIZE is how big the message can be
+            # this is test if it's sufficiently big
+            import sys
+            siz = sys.getsizeof(data)
+            if  siz >= MAX_BUFFER_SIZE:
+                print("The length of input is probably too long: {}".format(siz))
             if data:
+                data = data.decode("utf8").rstrip()
+                # print("--->" + data)
+
                 data = json.loads(data)
                 samples = data['samples']
                 self.channel_data += list(samples)

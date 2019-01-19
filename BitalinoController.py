@@ -1,4 +1,5 @@
 import argparse
+from builtins import input
 import time
 import string
 import atexit
@@ -7,6 +8,7 @@ import logging
 from bitalino import BITalino, ExceptionCode
 from yapsy.PluginManager import PluginManager
 from pyqtgraph.Qt import QtGui, QtCore
+
 
 BITALINO_LOCK = threading.Lock()
 
@@ -59,7 +61,7 @@ class BitalinoController(BITalino):
                         print('Stopping streaming')
                 else:
                     print("Error: Unrecognized command")
-            user_input = raw_input('$ ')
+            user_input = input('$ ')
 
 
 def parse_args(manager):

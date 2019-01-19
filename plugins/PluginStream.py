@@ -46,28 +46,30 @@ class PluginStream(IPluginBitalino.IPluginBitalino):
         read_sockets, write_sockets, error_sockets = select.select([self.server_socket], [], [], 0)
         for sock in read_sockets:
             if sock is self.server_socket:
-                sockfd, addr = self.server_socket.accept()
-                self.connections.append(sockfd)
+                conn, addr = self.server_socket.accept()
+                self.connections.append(conn)
                 print("Client ({}, {}) connected".format(*addr))
 
     def deactivate(self):
-        for sock in self.connections:
-            if sock != self.server_socket:
-                sock.close()
+        for conn in self.connections:
+            if conn != self.server_socket:
+                conn.close()
         self.server_socket.close()
 
     def __call__(self, samples):
         failed_connections = []
-        for sock in self.connections:
+        for conn in self.connections:
             try:
                 # TODO: for the moment, just use the last channel
                 data = pd.Series(pd.Series({'samples': samples[:, -1].flatten()})).to_json() + '\n'
-                sock.sendall(data)
-            except:
-                failed_connections.append(sock)
-        for bad_sock in failed_connections:
-            self.connections.remove(bad_sock)
-            bad_sock.close()
+                conn.send(data.encode("utf8"))
+            except Exception as e:
+                print("Failed " + str(conn))
+                print(e)
+                failed_connections.append(conn)
+        for bad_conn in failed_connections:
+            self.connections.remove(bad_conn)
+            bad_conn.close()
 
     def show_help(self):
         print("""Optional arguments: [IP [port]]
