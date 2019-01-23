@@ -139,7 +139,6 @@ def activate_plugins(args, manager, sampling_rate, acq_channels, nb_samples):
             if plugin == None:
                 print("Error: Plugin [{0}] not found or failed during load".format(plugin_name))
             else:
-                print(type(plugin.plugin_object))
                 if not plugin.plugin_object.activate_plugin(plugin_args, sampling_rate, acq_channels, nb_samples):
                     print("Error while activating [{0}]".format(plugin_name))
                 else:
@@ -162,17 +161,12 @@ if __name__ == '__main__':
     (macAddress, sampling_rate, nb_samples, acq_channels,
      plugin_list, callbacks_list) = parse_args(manager)
 
-    app = QtGui.QApplication([])
-    app.processEvents()
+    # app = QtGui.QApplication([])
+    # app.processEvents()
 
     # Connect to BITalino
     device = BitalinoController(macAddress)
     # Configure the device
     device.init(callbacks_list, sampling_rate, acq_channels, nb_samples)
     
-    # import numpy as np
-    # from matplotlib.pyplot import plt
-    #
-    # x = np.concatenate(device.samples, 0)
-    # plt.plot(x[:, -1])
     device.close()

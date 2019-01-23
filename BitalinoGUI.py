@@ -46,7 +46,6 @@ class BitalinoGUI(QtGui.QMainWindow):
                 print("The length of input is probably too long: {}".format(siz))
             if data:
                 data = data.decode("utf8").rstrip()
-                # print("--->" + data)
 
                 data = json.loads(data)
                 samples = data['samples']
@@ -57,10 +56,17 @@ class BitalinoGUI(QtGui.QMainWindow):
 
 if __name__ == '__main__':
    import sys
+
    app = QtGui.QApplication([])
-   gui=BitalinoGUI()
+
+   if len(sys.argv) > 1:
+        port = int(sys.argv[1])
+        gui=BitalinoGUI(('localhost', port))
+   else:
+        gui=BitalinoGUI()
    gui.resize(800, 800)
    gui.setWindowTitle('Bitalino GUI')
    gui.show()
+
    app.processEvents()
    sys.exit(app.exec_())

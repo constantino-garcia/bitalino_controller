@@ -1,5 +1,5 @@
 from threading import Thread
-import socket, select, struct, time
+import socket, select, time
 import IPluginBitalino
 import pandas as pd
 
@@ -30,16 +30,13 @@ class PluginStream(IPluginBitalino.IPluginBitalino):
             self.port = int(self.args[1])
 
         print("Streaming through TCP to " + self.ip + ":" + str(self.port))
-        self.initialize()
+        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server_socket.bind((self.ip, self.port))
+        self.server_socket.listen(1)
 
         self.monitor = MonitorNewConnections(self)
         self.monitor.daemon = True
         self.monitor.start()
-
-    def initialize(self):
-        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server_socket.bind((self.ip, self.port))
-        self.server_socket.listen(1)
 
     def check_connections(self):
         # wait for incoming connections

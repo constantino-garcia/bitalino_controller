@@ -1,6 +1,14 @@
 from yapsy.IPlugin import IPlugin
 
 class IPluginBitalino(IPlugin):
+    """
+    Defines the basic interface for a Bitalino plugin. When creating a specific plugin you should
+    override:
+        - activate/deactivate: called at plugin activation/deactivation.
+        - __call__: handles streamed samples from Bitalino.
+        - show_help: shows plugin's help.
+    Note that the activate_plugin and deactivate_plugin methods should not be overrided.
+    """
     def activate_plugin(self, args, sampling_rate, acq_channels, nb_samples):
         """
         :param args: arguments from command line
@@ -18,15 +26,20 @@ class IPluginBitalino(IPlugin):
         self.is_activated = True
         return self.is_activated
 
+    # Specific Plugin logic goes here
     def activate(self):
         print("Plugin {0} activated".format(self.__class__.__name__))
 
-    # alias for consistency with activate
+    # Alias for consistency with activate
     def deactivate_plugin(self):
         self.deactivate()
 
+    # Specific Plugin logic goes here
     def deactivate(self):
         print("Plugin {0} deactivated".format(self.__class__.__name__))
 
-    def help(self):
+    def show_help(self):
         print("Plugin {0} does not need any parameter".format(self.__class__.__name__))
+
+    def __call__(self, samples):
+        pass
