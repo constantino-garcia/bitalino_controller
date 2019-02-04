@@ -1,0 +1,4 @@
+PyBluez
+python-xlib
+pyqtgraph
+PyAutoGUI

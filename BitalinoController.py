@@ -149,6 +149,10 @@ def activate_plugins(args, manager, sampling_rate, acq_channels, nb_samples):
         print("WARNING: no plugins selected")
     return plugin_list, callbacks_list
 
+def deactivate_plugins(plugins_list):
+    for plugin in plugins_list: 
+        plugin.deactivate_plugin()
+
 
 if __name__ == '__main__':
     from BitalinoController import *
@@ -168,5 +172,9 @@ if __name__ == '__main__':
     device = BitalinoController(macAddress)
     # Configure the device
     device.init(callbacks_list, sampling_rate, acq_channels, nb_samples)
-    
-    device.close()
+    try:
+        deactivate_plugins(callbacks_list)
+    finally: 
+        device.close()
+
+    print("The end")
