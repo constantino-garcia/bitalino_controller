@@ -1,11 +1,13 @@
 # Bitalino controller in Python
 
-A **Python 2.7** library designed to control a [BITalino](http://bitalino.com/en/community/projects) board by means of Plugins (inspired by the [OpenBCI library](https://github.com/OpenBCI/OpenBCI_Python)). This repository is intended to provide
+A **Python** project designed to control a [BITalino](http://bitalino.com/en/community/projects) board by means of Plugins (inspired by the [OpenBCI library](https://github.com/OpenBCI/OpenBCI_Python)). This repository is intended to provide
 a "bare-bones" BITalino controller, which should be improved as part of a undergraduate course on biosignals. Therefore, it is unlikely that new features will be added in the future. However, if you are interested in further develop the project, 
 don't hesitate in forking it (see [License](#license)).
 
 ## Installation
-This project is implemented in **Python 2.7** and depends on the packages listed in *requirements.txt*. At the same time, some of these packages have some system-dependencies that should be met before trying to install them.
+This project is implemented in **Python** and should work for both Python 2.7 and 3.X. The code has been tested in both Linux and Windows operating systems. It should also work out of the box in MacOS-based systems (untested).
+
+The project depends on the packages listed in *requirements.txt*. At the same time, some of these packages have some system-dependencies that should be met before trying to install them.
 
 * In Debian/Ubuntu-based distributions: 
 `$ sudo apt install python-xlib libbluetooth-dev`
@@ -17,15 +19,14 @@ The python dependencies can be installed using the following pip command:
 $ pip install -r requirements.txt
 ```
 
-In case of failure, running each line from *requirements.txt* with `pip install` may be a workaround: 
+Linux and Windows users should also install the ```pyBluez``` dependency from the *optional-requirements.txt* file:
 
 ```bash
-$ pip install -e git+https://github.com/tibonihoo/yapsy.git#egg=yapsy&subdirectory=package
-$ pip install serial
-# ...
+$ pip install PyBluez                      # or
+$ pip install -r optional-requirements.txt # installs additional optional dependencies
 ```
 
-Also, in case of Windows users, it is possible that the ```PyBluez``` package should be installed from a [.whl file](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pybluez) (Using ```pip install PyBluez‑xxx.whl```).
+In case of Windows users, it is possible that the ```PyBluez``` package should be installed from this [.whl file](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pybluez) or this [.whl file in case of Python 3.7](https://onedrive.live.com/?authkey=%21AOf8NdRKNfz6OAM&cid=BDF103E942F0E7D2&id=BDF103E942F0E7D2%21128&parId=BDF103E942F0E7D2%21125&o=OneUp) (Using ```pip install PyBluez‑xxx.whl```).
 
 Once all the dependencies are satisfied, it is enough to download the project sources and run the proper python script.
 
@@ -66,8 +67,7 @@ python BitalinoController.py -p stream 127.0.0.1 6666 -p print
 To create a new plugin, a new class extending ```IPluginBitalino``` should be created. For a minimal example, see [plugins/PluginPrint.py](plugin/PluginPrint.py). Finally, describe your plugin with a ```[name-of-class].yapsy-plugin``` (see [plugins/PluginPrint.yapsy-plugin](plugins/PluginPrint.yapsy-plugin)).
 
 ### A basic visualization tool
-When using the ```BitalinoController``` with the default parameters of the ```PluginStream```, a basic signal visualizer can be used. The following command starts a client listening at localhost:6666 which 
-plots the channel streamed by ```PluginStream```:
+When using the ```BitalinoController``` with the default parameters of the ```PluginStream```, a basic signal visualizer can be used if the *optinal-requirements.txt* file has been installed. The following command starts a client listening at localhost:6666 which plots the channel streamed by ```PluginStream```:
 
 ```bash
 $ python BitalinoGUI.py 
