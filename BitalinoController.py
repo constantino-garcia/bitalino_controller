@@ -155,8 +155,6 @@ def deactivate_plugins(plugins_list):
 
 
 if __name__ == '__main__':
-    from BitalinoController import *
-
     # Load plugins from the plugins directory
     manager = PluginManager()
     manager.setPluginPlaces(["plugins"])
