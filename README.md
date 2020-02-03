@@ -35,11 +35,11 @@ Before using the Python scripts the BITalino board should be Bluetooth-paired wi
 
 ```BitalinoController.py``` provides a simple user interface to manage plugins and communicate with the BITalino board. Several command line arguments can be used to configure the board. For a complete list, consult
 ```bash
-python BitalinoController --help
+python BitalinoController.py --help
 ```
 For a basic usage, only the MAC address of the BITalino board is required:
 ```bash
-$ python BitalinoController -m 20:16:02:26:61:54
+$ python BitalinoController.py -m 20:16:02:26:61:54
 ```
 The program should stablish a Bluetooth connection with the board and open a simple terminal (indicated with a ```$``` symbol). Available commands are:
 * ```\start```: starts the streaming of data.
