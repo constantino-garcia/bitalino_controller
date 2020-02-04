@@ -7,7 +7,7 @@ import threading
 import logging
 from bitalino import BITalino, ExceptionCode
 from yapsy.PluginManager import PluginManager
-from pyqtgraph.Qt import QtGui, QtCore
+# from pyqtgraph.Qt import QtGui, QtCore
 
 
 BITALINO_LOCK = threading.Lock()
