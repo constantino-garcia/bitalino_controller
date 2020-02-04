@@ -7,8 +7,9 @@ don't hesitate in forking it (see [License](#license)).
 ## Installation
 This project is implemented in **Python** and should work for both Python 2.7 and 3.X. The code has been tested in both Linux and Windows operating systems. It should also work out of the box in MacOS-based systems (untested).
 
-The project depends on the packages listed in *requirements.txt*. At the same time, some of these packages have some system-dependencies that should be met before trying to install them.
+The project depends on the packages listed in *requirements.txt*. At the same time, some of these packages have some system-dependencies that should be met before trying to install them:
 
+* In MacOS: you don't need to install any system-dependency.
 * In Debian/Ubuntu-based distributions: 
 ```bash
 $ sudo apt install python-xlib libbluetooth-dev
@@ -60,7 +61,7 @@ python BitalinoController.py -p stream 127.0.0.1 6666 -p print
 To create a new plugin, a new class extending ```IPluginBitalino``` should be created. For a minimal example, see [plugins/PluginPrint.py](plugin/PluginPrint.py). Finally, describe your plugin with a ```[name-of-class].yapsy-plugin``` (see [plugins/PluginPrint.yapsy-plugin](plugins/PluginPrint.yapsy-plugin)).
 
 ### A basic visualization tool
-When using the ```BitalinoController``` with the default parameters of the ```PluginStream```, a basic signal visualizer can be used if the *optinal-requirements.txt* file has been installed:
+When using the ```BitalinoController``` with the default parameters of the ```PluginStream```, a basic signal visualizer can be used if the *optional-requirements.txt* file has been installed:
 ```bash
 $ pip install -r optional-requirements.txt # installs additional optional dependencies
 ```
