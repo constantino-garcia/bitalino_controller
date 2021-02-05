@@ -7,15 +7,15 @@ don't hesitate in forking it (see [License](#license)).
 ## Installation
 This project is implemented in **Python** and should work for both Python 2.7 and 3.X. The code has been tested in both Linux and Windows operating systems. It should also work out of the box in MacOS-based systems (untested).
 
-The project depends on the packages listed in *requirements.txt*. At the same time, some of these packages have some system-dependencies that should be met before trying to install them:
+The project depends on the packages listed in *requirements.txt*. At the same time, some of these packages have some system-dependencies that should be met before trying to install them: 
 
-* In MacOS: you don't need to install any system-dependency.
+* In MacOS: install [git](https://git-scm.com/downloads).
 * In Debian/Ubuntu-based distributions: 
 ```bash
-$ sudo apt install python-xlib libbluetooth-dev
+$ sudo apt install python-xlib libbluetooth-dev git
 $ pip install PyBluez
 ```
-* In Windows: please follow this guide about [preparing PyBluez on Windows 10](https://github.com/BITalinoWorld/revolution-python-api#prepare-pybluez-installation-on-windows-10)
+* In Windows: install [git](https://git-scm.com/downloads) and then follow this guide about [preparing PyBluez on Windows 10](https://github.com/BITalinoWorld/revolution-python-api#prepare-pybluez-installation-on-windows-10).
 
 Once you have completed the previous steps, you may install the python dependencies using the following pip command:
 ```bash
