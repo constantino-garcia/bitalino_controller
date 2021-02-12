@@ -15,11 +15,19 @@ The project depends on the packages listed in *requirements.txt*. At the same ti
 $ sudo apt install python-xlib libbluetooth-dev git
 $ pip install PyBluez
 ```
-* In Windows: install [git](https://git-scm.com/downloads) and then follow steps 1, 2 and 3 about [preparing PyBluez on Windows 10](https://github.com/BITalinoWorld/revolution-python-api#prepare-pybluez-installation-on-windows-10). The proper command for step 4 is:
+* In Windows: install [git](https://git-scm.com/downloads) and then follow steps 1, 2 and 3 about [preparing PyBluez on Windows 10](https://github.com/BITalinoWorld/revolution-python-api#prepare-pybluez-installation-on-windows-10). For step 4 we need to 
+manually compile the PyBluez library. Open a Windows terminal that has python and git commands available (you may use Anaconda prompt) and proceed
+as follows:
 ```bash
-$ pip install pybluez
+# 1) Download the latest code
+$ git clone https://github.com/pybluez/pybluez
+$ cd pybluez
+# 2) Build the library
+$ python setup.py install
+$ python setup.py bdist_wheel
+# 3) Install the library. A .whl file should be available under dist. Note that the version number may differ.
+$ pip install dist\PyBluez-0.30-cp38-cp38-win_amd64.whl
 ```
-
 Once you have completed the previous steps, you may install the python dependencies using the following pip command:
 ```bash
 $ pip install -r requirements.txt
